@@ -1,5 +1,8 @@
 package pl.sdacademy.majbaum.spring.hello.java;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Foo {
     private final Bar bar;
 
