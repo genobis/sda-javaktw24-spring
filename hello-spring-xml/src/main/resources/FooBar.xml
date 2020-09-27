@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean name="bar" class="pl.sdacademy.majbaum.spring.hello.xml.Bar">
+        <constructor-arg name="welcomeMessage" value="Hello Spring XML!" />
+    </bean>
+    <bean name="foo" class="pl.sdacademy.majbaum.spring.hello.xml.Foo">
+        <constructor-arg name="bar" ref="bar" />
+    </bean>
+</beans>
