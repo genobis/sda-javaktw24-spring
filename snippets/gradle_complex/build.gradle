@@ -1,0 +1,37 @@
+//Można deklarować zmienne do użycia w innych miejscach skryptu budowania
+buildscript {
+    ext {
+        springBootVersion = '2.3.4.RELEASE'
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+group 'pl.sdacademy.majbaum.spring'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //Specjalna zależność dzięki której nie trzeba podawać zależności poszczególnych starterów
+    implementation platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion")
+
+    //Skrócony zapis zależności od spring-boot-starter-web (bez wersji - por. wyżej)
+    implementation("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat" //Bez tomcata!
+    }
+
+    //Jetty to alternatywna implementacja kontenera serwletów
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jetty'
+
+    //Undertow to jeszcze inna implementacja
+    //compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow'
+}
+
+//Jeśli javac pod Windows użyje kodowania ANSI w trakcie kompilacji, poniższa konfiguracja może pomóc
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
