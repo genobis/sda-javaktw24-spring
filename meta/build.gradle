@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group 'pl.sdacademy.majbaum.spring'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //Minimalny starter podstawowej aplikacji Spring Boot
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.3.4.RELEASE'
+
+    //Minimalny starter webowej aplikacji Spring Boot
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.4.RELEASE'
+
+    //Wymagane dla obsługi JSP w kontenerze serwletów Tomcat
+    implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.38'
+
+    //Wymagane dla obsługi JSTL w JSP
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+
+    //Wymagane dla obsługi Mustache
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mustache', version: '2.3.4.RELEASE'
+
+    //Wymagane dla obsługi walidacji
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.3.4.RELEASE'
+
+    //Obsługa XML
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.11.2'
+}
