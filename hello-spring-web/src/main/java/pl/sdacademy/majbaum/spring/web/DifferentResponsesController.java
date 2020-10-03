@@ -26,6 +26,7 @@ public class DifferentResponsesController {
         return ResponseEntity.status(HttpStatus.GONE).build();
     }
 
+    //Wyjątek łapie się w Springowy widok do obsługi błędów
     @GetMapping("/rsp-gone-3")
     public void responseExceptionGone() {
         throw new ResponseStatusException(HttpStatus.GONE);

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.time.LocalDate;
 import java.util.Map;
 
+//Obsługa modelu na kilka różnych sposobów
 @Controller
 public class HelloJsp {
 
@@ -43,7 +44,7 @@ public class HelloJsp {
 
         final ModelMap model = modelAndView.getModelMap();
         model.put("firstName", "Tomek");
-        model.put("lastName", "Majbaumąęść");
+        model.put("lastName", "Majbaum");
         model.put(
                 "birthDate",
                 LocalDate.of(1983, 12, 13)

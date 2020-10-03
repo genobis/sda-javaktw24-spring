@@ -15,6 +15,7 @@ public class PeopleController {
         this.peopleService = peopleService;
     }
 
+    //Używa widoku people.mustache
     @GetMapping
     public ModelAndView getPeople() {
         final ModelAndView mav = new ModelAndView();
@@ -22,6 +23,8 @@ public class PeopleController {
         mav.getModel().put("people", peopleService.getPeople());
         return mav;
     }
+
+    //Dane z formularza można obsłużyć na kilka sposobów
 
 //    @PostMapping
 //    public ModelAndView addPerson(@ModelAttribute Person person) {
@@ -49,6 +52,8 @@ public class PeopleController {
         person.setLastName(lastName);
 
         peopleService.addPerson(person);
+
+        //Obsługę widoku zapewnia logika endpointu [GET] /people
         return getPeople();
     }
 

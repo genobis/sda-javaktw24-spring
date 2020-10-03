@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDate;
 
+//Przykład z mustache
 @Controller
 public class HelloMustache {
     @GetMapping("/hello-mustache")
