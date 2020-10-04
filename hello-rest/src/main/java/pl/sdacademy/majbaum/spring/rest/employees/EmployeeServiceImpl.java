@@ -20,11 +20,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<Employee> getEmployee(String code) {
-        return Optional.empty();
+        return Optional.ofNullable(map.get(code));
     }
 
     @Override
     public boolean deleteEmployee(String code) {
-        return false;
+        return map.remove(code) != null;
     }
 }
