@@ -2,7 +2,9 @@ package pl.sdacademy.majbaum.spring.rest.employees;
 
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -14,8 +16,28 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEmployees() {
-        return new ArrayList<>(map.values());
+    public List<Employee> getEmployees(LocalDate dateFrom, LocalDate dateTo) {
+        final LocalDate sanitizedDateFrom = Optional.ofNullable(dateFrom).orElse(LocalDate.MIN);
+        final LocalDate sanitizedDateTo = Optional.ofNullable(dateTo).orElse(LocalDate.now());
+
+        if (sanitizedDateFrom.isAfter(sanitizedDateTo)) {
+            throw new IllegalArgumentException("dateFrom MUST NOT be after dateTo");
+        }
+
+        return map.values().stream()
+                .filter(employee ->
+                        employeeFilter(employee, sanitizedDateFrom, sanitizedDateTo)
+                )
+                .collect(Collectors.toList());
+    }
+
+    private boolean employeeFilter(Employee employee, LocalDate dateFrom, LocalDate dateTo) {
+        final LocalDate birthDate = employee.getBirthDate();
+        if (birthDate == null) {
+            return true;
+        }
+
+        return birthDate.isAfter(dateFrom) &&  birthDate.isBefore(dateTo);
     }
 
     @Override

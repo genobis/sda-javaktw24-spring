@@ -1,5 +1,6 @@
 package pl.sdacademy.majbaum.spring.rest.employees;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import java.time.LocalDate;
 import java.util.List;
 
 @Validated
@@ -52,8 +55,18 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<Employee> getEmployees() {
-        return employeeService.getEmployees();
+    public List<Employee> getEmployees(
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+        @RequestParam(name = "date-from", required = false)
+        @PastOrPresent
+        LocalDate dateFrom,
+
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+        @RequestParam(name = "date-to", required = false)
+        @PastOrPresent
+        LocalDate dateTo
+    ) {
+        return employeeService.getEmployees(dateFrom, dateTo);
     }
 
     @GetMapping("/{code}")

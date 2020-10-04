@@ -1,11 +1,12 @@
 package pl.sdacademy.majbaum.spring.rest.employees;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeService {
     boolean isPresent(String code);
-    List<Employee> getEmployees();
+    List<Employee> getEmployees(LocalDate dateFrom, LocalDate dateTo);
     Optional<Employee> getEmployee(String code);
 
     /**
