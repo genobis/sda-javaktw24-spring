@@ -16,6 +16,16 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public Employee addEmployee(@RequestBody Employee employee) {
+        if (!employeeService.addEmployee(employee)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
+        }
+
+        return employee;
+    }
+
     @PutMapping("/{code}")
     public ResponseEntity<Employee> addEmployee(
             @PathVariable String code,
@@ -28,12 +38,12 @@ public class EmployeeController {
             );
         }
 
-        final boolean wasPresent = employeeService.getEmployee(code).isPresent();
-        employeeService.addEmployee(employee);
-        if (wasPresent) {
+        if (employeeService.isPresent(code)) {
+            employeeService.replaceEmployee(employee);
             return ResponseEntity.ok(employee);
         }
         else {
+            employeeService.addEmployee(employee);
             return ResponseEntity.status(HttpStatus.CREATED).body(employee);
         }
     }

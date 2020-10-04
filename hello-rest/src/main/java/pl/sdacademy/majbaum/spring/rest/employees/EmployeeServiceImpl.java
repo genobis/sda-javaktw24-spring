@@ -9,13 +9,33 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final Map<String,Employee> map = new LinkedHashMap<>();
 
     @Override
+    public boolean isPresent(String code) {
+        return map.containsKey(code);
+    }
+
+    @Override
     public List<Employee> getEmployees() {
         return new ArrayList<>(map.values());
     }
 
     @Override
-    public void addEmployee(Employee employee) {
+    public boolean addEmployee(Employee employee) {
+        if (isPresent(employee.getCode())) {
+            return false;
+        }
+
         map.put(employee.getCode(), employee);
+        return true;
+    }
+
+    @Override
+    public boolean replaceEmployee(Employee employee) {
+        if (!isPresent(employee.getCode())) {
+            return false;
+        }
+
+        map.put(employee.getCode(), employee);
+        return true;
     }
 
     @Override
