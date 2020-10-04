@@ -2,11 +2,14 @@ package pl.sdacademy.majbaum.spring.rest.employees;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+@Validated
 @RequestMapping("/employees")
 @RestController
 public class EmployeeController {
@@ -18,7 +21,7 @@ public class EmployeeController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Employee addEmployee(@RequestBody Employee employee) {
+    public Employee addEmployee(@RequestBody @Validated Employee employee) {
         if (!employeeService.addEmployee(employee)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
@@ -28,8 +31,8 @@ public class EmployeeController {
 
     @PutMapping("/{code}")
     public ResponseEntity<Employee> addEmployee(
-            @PathVariable String code,
-            @RequestBody Employee employee
+            @PathVariable @NotBlank String code,
+            @RequestBody @Validated Employee employee
     ) {
         if (!code.equals(employee.getCode())) {
             throw new ResponseStatusException(
@@ -54,7 +57,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{code}")
-    public Employee getEmployee(@PathVariable String code) {
+    public Employee getEmployee(@PathVariable @NotBlank String code) {
         /*
         final Optional<Employee> employeeOptional = employeeService.getEmployee(code);
         if (employeeOptional.isPresent()) {
@@ -71,7 +74,7 @@ public class EmployeeController {
 
     @DeleteMapping("/{code}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEmployee(@PathVariable String code) {
+    public void deleteEmployee(@PathVariable @NotBlank String code) {
         if(!employeeService.deleteEmployee(code)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
