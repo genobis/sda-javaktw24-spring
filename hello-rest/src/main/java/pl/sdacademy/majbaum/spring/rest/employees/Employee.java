@@ -7,21 +7,22 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 
+//Adnotacja biblioteki Jackson - jak nazwać XML root element; gdy brak, nazwa od klasy (tutaj: Element)
 @JacksonXmlRootElement(localName = "employee")
 public class Employee {
-    @NotBlank
+    @NotBlank //Nie-null, nie-puste, nie mogą być same białe znaki
     private String code;
 
-    @NotBlank
-    @JacksonXmlProperty(localName = "first_name")
+    @NotBlank //Nie-null, nie-puste, nie mogą być same białe znaki
+    @JacksonXmlProperty(localName = "first_name") //Jak nazwać element zawierający wartość; gdy brak, nazwa od pola (tutaj: firstName)
     private String firstName;
 
-    @NotBlank
-    @JacksonXmlProperty(localName = "last_name")
+    @NotBlank //Nie-null, nie-puste, nie mogą być same białe znaki
+    @JacksonXmlProperty(localName = "last_name") //Jak nazwać element zawierający wartość; gdy brak, nazwa od pola (tutaj: lastName)
     private String lastName;
 
-    @PastOrPresent
-    @JacksonXmlProperty(localName = "birth_date")
+    @PastOrPresent //Data w przeszłości lub bieżąca. Null DOZWOLONY (gdyby nie był, trzeba dodatkowo @NotNull)
+    @JacksonXmlProperty(localName = "birth_date")  //Jak nazwać element zawierający wartość; gdy brak, nazwa od pola (tutaj: birthDate)
     private LocalDate birthDate;
 
     public String getCode() {
