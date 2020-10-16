@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+    font-family: sans-serif;
+}
+
+h1, #footer {
+    background-color: darkslategrey;
+}
+
+h1, #footer, h1 a:link, h1 a:visited, h1 a:hover, h1 a:active {
+    color: white;
+    text-decoration: none;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+h2 {
+    color: darkslategrey;
+}
+
+label {
+    display: inline-block;
+    width: 100pt;
+    margin: 5pt;
+}

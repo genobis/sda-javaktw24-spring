@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.4.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mustache', version: '2.3.4.RELEASE'
 }
 
 compileJava.options.encoding = "UTF-8"
