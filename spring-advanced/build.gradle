@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+group 'pl.sdacademy.majbaum.spring'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.3.4.RELEASE'
+}
