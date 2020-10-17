@@ -14,8 +14,13 @@ public class FooService {
         this.fooRepository = fooRepository;
     }
 
-    public List<Foo> getFoos() {
-        return fooRepository.findAll();
+    public List<Foo> getFoos(String query) {
+        if (query == null) {
+            return fooRepository.findAll();
+        }
+        else {
+            return fooRepository.findByNameContainingIgnoreCaseOrderByName(query);
+        }
     }
 
     public Foo addFoo(Foo foo) {

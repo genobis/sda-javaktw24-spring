@@ -15,8 +15,8 @@ public class FooController {
     }
 
     @GetMapping
-    public List<Foo> getFoos() {
-        return fooService.getFoos();
+    public List<Foo> getFoos(@RequestParam(required = false) String query) {
+        return fooService.getFoos(query);
     }
 
     @PostMapping
