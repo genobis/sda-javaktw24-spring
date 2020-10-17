@@ -1,13 +1,13 @@
 package pl.sdacademy.majbaum.spring.data.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
+@SequenceGenerator(name = "FooSeq", sequenceName = "foo_seq")
 @Table(name = "foo")
 public class Foo {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FooSeq")
     private Long id;
     private String name;
 
