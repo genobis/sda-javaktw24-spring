@@ -11,7 +11,7 @@ public class Foo {
     private Long id;
     private String name;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "bar_id")
     private Bar bar;
 
