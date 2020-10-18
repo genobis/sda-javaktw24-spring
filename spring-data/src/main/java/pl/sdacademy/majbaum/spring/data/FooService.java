@@ -1,5 +1,7 @@
 package pl.sdacademy.majbaum.spring.data;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.sdacademy.majbaum.spring.data.model.Foo;
 
@@ -14,12 +16,12 @@ public class FooService {
         this.fooRepository = fooRepository;
     }
 
-    public List<Foo> getFoos(String query) {
+    public Page<Foo> getFoos(String query, Pageable pageable) {
         if (query == null) {
-            return fooRepository.findAll();
+            return fooRepository.findAll(pageable);
         }
         else {
-            return fooRepository.findByNameContainingIgnoreCaseOrderByName(query);
+            return fooRepository.findByNameContainingIgnoreCaseOrderByName(query, pageable);
         }
     }
 
