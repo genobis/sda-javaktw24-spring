@@ -5,8 +5,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.sdacademy.majbaum.spring.data.model.Foo;
 
-import java.util.List;
-
 @Service
 public class FooService {
 

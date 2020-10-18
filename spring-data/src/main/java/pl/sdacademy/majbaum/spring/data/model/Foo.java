@@ -11,6 +11,10 @@ public class Foo {
     private Long id;
     private String name;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "bar_id")
+    private Bar bar;
+
     public Long getId() {
         return id;
     }
@@ -25,5 +29,13 @@ public class Foo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Bar getBar() {
+        return bar;
+    }
+
+    public void setBar(Bar bar) {
+        this.bar = bar;
     }
 }
