@@ -5,8 +5,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import pl.sdacademy.majbaum.spring.data.model.Foo;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/foos")
 public class FooController {
@@ -24,5 +22,11 @@ public class FooController {
     @PostMapping
     public Foo addFoo(@RequestBody Foo foo) {
         return fooService.addFoo(foo);
+    }
+
+    @PatchMapping("/{id}")
+    public Foo changeFoo(@PathVariable long id, @RequestBody Foo foo) {
+        final String newName = foo.getName();
+        return fooService.changeName(id, newName);
     }
 }
