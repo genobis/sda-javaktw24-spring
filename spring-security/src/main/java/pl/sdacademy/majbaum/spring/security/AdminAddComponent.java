@@ -1,6 +1,6 @@
 package pl.sdacademy.majbaum.spring.security;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.sdacademy.majbaum.spring.security.model.User;
 
@@ -9,9 +9,11 @@ import javax.annotation.PostConstruct;
 @Component
 public class AdminAddComponent {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public AdminAddComponent(UserRepository userRepository) {
+    public AdminAddComponent(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostConstruct
@@ -19,7 +21,7 @@ public class AdminAddComponent {
         if (!userRepository.existsById("admin")) {
             final User user = new User();
             user.setUserName("admin");
-            user.setPassword(new BCryptPasswordEncoder().encode("admin"));
+            user.setPassword(passwordEncoder.encode("admin"));
             userRepository.save(user);
         }
     }
