@@ -18,6 +18,7 @@ public class AdminAddComponent {
         final User user = new User();
         user.setUserName("admin");
         user.setPassword("admin");
+        user.setRole("ROLE_ADMIN");
         userService.addUser(user);
     }
 }

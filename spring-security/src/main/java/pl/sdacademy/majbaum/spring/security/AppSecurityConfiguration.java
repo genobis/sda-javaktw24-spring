@@ -13,6 +13,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/").permitAll()
+                .antMatchers(HttpMethod.POST, "/users").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().and()

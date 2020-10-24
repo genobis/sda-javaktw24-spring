@@ -1,11 +1,13 @@
 package pl.sdacademy.majbaum.spring.security.auth;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import pl.sdacademy.majbaum.spring.security.model.User;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 public class UserDetailsImpl implements UserDetails {
     private final User user;
@@ -16,7 +18,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        return Set.of(new SimpleGrantedAuthority(user.getRole()));
     }
 
     @Override
