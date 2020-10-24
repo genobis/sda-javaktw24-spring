@@ -34,7 +34,7 @@ public class EmployeeController {
 
     @GetMapping
     public Page<EmployeeDto> getEmployees(
-            @RequestParam(required = false) Boolean retired, //Boolean - bo dopouszczamy null!
+            @RequestParam(required = false) Boolean retired, //Boolean - bo dopuszczamy null!
             @RequestParam(required = false) List<String> skills, //To mógłby też być Set<String>
             Pageable pageable
     ) {

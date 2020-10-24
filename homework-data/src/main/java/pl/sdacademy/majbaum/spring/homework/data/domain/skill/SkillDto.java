@@ -11,7 +11,7 @@ public class SkillDto {
     //Potrzebny do deserializacji
     public SkillDto() { }
 
-    public SkillDto(@NotBlank String name, String description) {
+    public SkillDto(String name, String description) {
         this.name = name;
         this.description = description;
     }

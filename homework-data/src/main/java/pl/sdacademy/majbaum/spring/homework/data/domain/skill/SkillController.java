@@ -25,7 +25,8 @@ public class SkillController {
     }
 
     @GetMapping
-    public Page<SkillDto> createSkill(Pageable pageable) {
-        return skillService.getSkills(pageable).map(SkillMapper::map); //Pobiera listę umiejętności i mapuje
+    public Page<SkillDto> getSkills(Pageable pageable) {
+        return skillService.getSkills(pageable)
+                .map(SkillMapper::map); //Pobiera listę umiejętności i mapuje
     }
 }
