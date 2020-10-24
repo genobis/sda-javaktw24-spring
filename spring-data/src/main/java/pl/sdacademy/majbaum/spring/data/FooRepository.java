@@ -12,4 +12,7 @@ public interface FooRepository extends JpaRepository<Foo,Long> {
             String name,
             Pageable pageable
     );
+
+    @EntityGraph(attributePaths = "bar")
+    Page<Foo> findAll(Pageable pageable);
 }
