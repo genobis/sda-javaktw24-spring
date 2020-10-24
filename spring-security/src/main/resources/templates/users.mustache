@@ -1,0 +1,11 @@
+<html lang="en">
+<body>
+<h1>Lista użytkowników</h1>
+<table>
+    <tr><th>Nazwa</th><th>Hasło</th></tr>
+    {{#users}}
+    <tr><td>{{userName}}</td><td>{{password}}</td></tr>
+    {{/users}}
+</table>
+</body>
+</html>
