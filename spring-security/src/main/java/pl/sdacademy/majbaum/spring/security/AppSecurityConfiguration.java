@@ -16,6 +16,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().and()
-                .httpBasic();
+                .httpBasic().and()
+                .csrf().disable(); //potrzebne dla REST, niezalecane dla MVC
     }
 }
