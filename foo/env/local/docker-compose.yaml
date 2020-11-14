@@ -1,0 +1,27 @@
+version: "3.2"
+
+# serwisy do uruchomienia w ramach compose, my definiujemy tylko PostgreSQL
+services:
+  foo-pgsql:
+    # obraz źródłowy z którego utworzyć kontener
+    image: "postgres:13.1-alpine"
+
+    # zmienne środowiskowe, oryginalny obraz postgresa używa ich do konfiguracji środowiska
+    environment:
+      - "POSTGRES_DB=foo"
+      - "POSTGRES_USER=foo"
+      - "POSTGRES_PASSWORD=foo"
+
+    # konfiguracja wolumenów, tj. magazynów danych które są w stanie przetrwać restart kontenera
+    # https://docs.docker.com/compose/compose-file/#volumes
+    volumes:
+      - type: volume
+        source: hello-foo-pgsql-volume
+        target: /var/lib/postgresql/data
+    # mapowania portów, tutaj: 5432 z wnętrza kontenera na 6666 na lokalnej maszynie
+    ports:
+      - "6666:5432"
+
+# wszystkie użyte w serwisach wolumeny trzeba wypisać tutaj
+volumes:
+  hello-foo-pgsql-volume:
