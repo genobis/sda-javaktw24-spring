@@ -1,0 +1,19 @@
+<html lang="pl">
+<head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+<div id = "header">
+<h1><a href="/">JavaKtw24 Blog</a></h1>
+    <div>{{#user.username}}
+    <span class = "username">{{.}}</span>
+    <form method = "POST" action = "/logout">
+        <input type = "submit" value="wyloguj">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    </form>
+    {{/user.username}}
+    {{^user.username}}<a href = "/login">Zaloguj</a>{{/user.username}}
+    </div>
+</div>
+<h2>{{title}}</h2>

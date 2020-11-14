@@ -1,0 +1,6 @@
+{{>header}}
+<div class = "controls"><a href = "/articles/add">Dodaj</a></div>
+{{#articles}}
+<a href ="/articles/{{id}}"><h3>{{title}} ({{author.firstName}} {{author.lastName}})</h3></a>
+{{/articles}}
+{{>footer}}

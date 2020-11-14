@@ -1,0 +1,11 @@
+{{>header}}
+<div class = "controls">
+<a href = "/articles/{{article.id}}/edit">Edytuj</a>
+<form method = "POST" action = "/articles/{{article.id}}/delete">
+    <input type = "submit" value="Usuń">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+</form>
+</div>
+<p class = "author">{{article.author.firstName}} {{article.author.lastName}}</p>
+<p>{{article.content}}</p>
+{{>footer}}

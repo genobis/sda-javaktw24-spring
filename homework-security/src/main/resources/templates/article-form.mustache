@@ -1,0 +1,16 @@
+{{>header}}
+<form class = "data-input" method = "POST">
+    <div>
+    <label for = "title">Tytuł</label>
+    <input type = "text" id = "title" name = "title" {{#article}}value = "{{title}}"{{/article}}>
+    </div>
+
+    <div>
+    <label for = "content">Treść</label>
+    <textarea id = "content" name = "content">{{#article}}{{content}}{{/article}}</textarea>
+    </div>
+
+    <input type = "submit" value="OK">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+</form>
+{{>footer}}
