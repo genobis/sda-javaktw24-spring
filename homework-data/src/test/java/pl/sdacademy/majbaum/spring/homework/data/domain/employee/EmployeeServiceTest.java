@@ -48,6 +48,15 @@ class EmployeeServiceTest {
             any()
         )).willReturn(expectedResult);
 
+        //działanie identyczne jak wyżej
+        /*
+        when(employeeRepository.findByBirthDateBetween(
+            eq(LocalDate.of(1800,1,1)),
+            eq(LocalDate.of(2019,7,17)),
+            any()
+        )).thenReturn(expectedResult);
+        */
+
         //WHEN
         var result = employeeService.getEmployees(null, null, null);
 
